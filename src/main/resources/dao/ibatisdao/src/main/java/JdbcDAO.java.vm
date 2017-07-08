@@ -74,17 +74,53 @@ import $!{gb.packageName}.common.Result;
 import $!{gb.packageName}.query.$!{tbb.className}Query;
 #end
 import $!{gb.packageName}.pojo.$!{tbb.className}${PO};
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 /**
  * @author  $!{gb.userName}
  * @date    $!{gb.nowDate}
  */
 
 @Repository
-public class $!{tbb.className}DAO {
+public class $!{tbb.className}DAOImpl extends JdbcDaoSupport {
 
 	@Resource
 	SqlMapClient sqlMapClientTemplate;
+	
+	/** 行映射器 */
+    private RowMapper<$!{tbb.className}${PO}> rowMapper = new RowMapper<$!{tbb.className}${PO}>() {
+         public $!{tbb.className}${PO} mapRow(ResultSet rs, int rowNum) throws SQLException {
+             $!{tbb.className}${PO} $!{tbb.objectName} = new $!{tbb.className}${PO}();
+             #foreach($cb in $tbb.colList)
+			    $!{tbb.objectName}.set$!{cb.methodName}(rs.getString("$!{cb.colName}"));
+			 #end
+             return $!{tbb.objectName};
+         }
+     };
+     
+     public Integer insert($!{tbb.className}${PO} $!{tbb.objectName}) throws SQLException{
+     		String sql = "INSERT INTO $!{tbb.objectName}(#foreach($cb in $tbb.colList)$!{cb.colName},#end)VALUES(#foreach($cb in $tbb.colList)?,#end)";
+     		return this.insert(sql,
+				new Object[] { 
+				#foreach($cb in $tbb.colList)
+				  #if($!{velocityCount} == $!{tbb.colList.size()})
+				    $!{tbb.objectName}.get$!{cb.methodName}()
+				  #else
+				 	 $!{tbb.objectName}.get$!{cb.methodName}(), 
+				  #end
+				#end
+				}, new int[] {
+				#foreach($cb in $tbb.colList)
+					#if($!{velocityCount} == $!{tbb.colList.size()})
+				    	Types.$!{cb.colType}
+				    #else
+				 	 	Types.$!{cb.colType}, 
+				    #end
+				#end
+				});
+	}
 
 	public Integer add$!{tbb.className}${PO}($!{tbb.className}${PO} $!{tbb.objectName}) throws SQLException{
 		return (Integer)this.sqlMapClientTemplate.insert("${tbb.className}.insert${tbb.className}${PO}", $!{tbb.objectName});

@@ -31,7 +31,7 @@ public class GenTable {
 	public GenTable(DbConn dbConn){
 		conn = dbConn;
 		settings = dbConn.getSettings();
-		allTableName = getTableName();
+		allTableName = getTableNameList();
 		alltables = allTableName.toString().replaceAll("\\[", "'").replaceAll("\\]", "'").replaceAll(", ", "','");
 //		allTablePK = getAllTablePK();
         allTablePK = getAllTablePKBYIndex();
@@ -93,7 +93,7 @@ public class GenTable {
 			ColBean cb = it.next();
 			cb.setPropertyName(ColBean.getPropName(cb.getColName()));
 			cb.setMethodName(ColBean.getMethodName(cb.getPropertyName()));
-			cb.setPropertyType(SqlType2Feild.mapJavaType(cb.getColSQLType()));
+			cb.setPropertyType(SqlType2Field.mapJavaType(cb.getColSQLType()));
 		}
 		return tableBean;
 	}
@@ -102,7 +102,7 @@ public class GenTable {
 	 * 获取数据库中所有表名
 	 * @return
 	 */
-	public List<String> getTableName() {
+	public List<String> getTableNameList() {
 		if(allTableName!=null&&!allTableName.isEmpty()) return allTableName;
 		DatabaseMetaData dbmd = null;
 		ResultSet rs = null;

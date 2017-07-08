@@ -40,15 +40,11 @@ import java.io.Serializable;
  */
 public class $!{tbb.className}${PO} implements Serializable{
 
-    /**
-	 *序列化ID
-	 */
+    /** 序列化ID*/
 	private static final long serialVersionUID = 1L;
 
 #foreach($cb in $tbb.colList)
-	/**
-     * $!{cb.colComment}
-     */
+	/** $!{cb.colComment}*/
     private $!{cb.propertyType} $!{cb.propertyName};
 #end
 

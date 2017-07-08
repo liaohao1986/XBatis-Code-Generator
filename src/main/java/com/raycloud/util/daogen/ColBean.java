@@ -30,9 +30,9 @@ public class ColBean {
 	/**================根据字段结构生成字段对象信息======================*/
 	/** 方法名，例如：FullName */
 	private String methodName;
-	/** 属�?名，例如：fullName */
+	/** 属性名，例如：fullName */
 	private String propertyName;
-	/** 属�?类型，例如：String */
+	/** 属性类型，例如：String */
 	private String propertyType;
 
 	/** 字段类型Mysql映射，例如：VARCHAR */
