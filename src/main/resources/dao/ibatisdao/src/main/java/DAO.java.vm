@@ -73,7 +73,7 @@ import java.util.Collections;
 import $!{gb.packageName}.common.Result;
 import $!{gb.packageName}.query.$!{tbb.className}Query;
 #end
-import $!{gb.packageName}.pojo.$!{tbb.className}${PO};
+import $!{gb.packageName}.entity.$!{tbb.className}${PO};
 
 /**
  * @author  $!{gb.userName}

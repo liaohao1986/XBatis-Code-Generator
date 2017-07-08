@@ -208,7 +208,6 @@ public class GenTable {
     private List<String> keySequence(Map<Integer, String> keyIndexMap) {
         List<Integer> index = new ArrayList<Integer>(keyIndexMap.keySet());
         Collections.sort(index, new Comparator() {
-            @Override
             public int compare(Object arg0, Object arg1) {
                 int muti0 = (Integer) arg0;
                 int muti1 = (Integer) arg1;
@@ -218,6 +217,9 @@ public class GenTable {
                     return 0;
                 }
             }
+
+           
+           
         });
         return new ArrayList<String>(keyIndexMap.values());
     }

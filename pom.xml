@@ -10,7 +10,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   		<springframework.version>4.2.6.RELEASE</springframework.version>
   </properties>
   
 	<dependencies>
@@ -48,23 +49,28 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring</artifactId>
-            <version>2.5.6.SEC03</version>
+            <artifactId>spring-core</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>2.5.6.SEC03</version>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>2.5.6.SEC03</version>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>2.5.6.SEC03</version>
+            <version>${springframework.version}</version>
         </dependency>
 
         <dependency>
